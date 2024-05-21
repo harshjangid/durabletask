@@ -164,7 +164,7 @@ namespace DurableTask.Core
                                     // Let this exception propagate out to be handled by the dispatcher
                                     ExceptionDispatchInfo.Capture(exception).Throw();
                                 }
-                                
+
                                 this.context.FailOrchestration(exception);
                             }
                             else
@@ -209,6 +209,7 @@ namespace DurableTask.Core
                     case EventType.ExecutionStarted:
                         var executionStartedEvent = (ExecutionStartedEvent)historyEvent;
                         this.context.Version = executionStartedEvent.Version;
+                        this.context.CreatedTime = this.orchestrationRuntimeState.CreatedTime;
                         this.result = this.taskOrchestration.Execute(this.context, executionStartedEvent.Input);
                         break;
                     case EventType.ExecutionTerminated:

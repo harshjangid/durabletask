@@ -59,6 +59,11 @@ namespace DurableTask.Core
         public string Version { get; internal protected set; }
 
         /// <summary>
+        /// Date-time when the orchestration was created
+        /// </summary>
+        public DateTime CreatedTime { get; internal protected set; }
+
+        /// <summary>
         /// Replay-safe current UTC datetime
         /// </summary>
         public virtual DateTime CurrentUtcDateTime { get; internal set; }
@@ -77,7 +82,7 @@ namespace DurableTask.Core
         /// Information about backend entity support, or null if the configured backend does not support entities.
         /// </summary>
         internal TaskOrchestrationEntityParameters EntityParameters { get; set; }
-           
+
         /// <summary>
         ///     Create a proxy client class to schedule remote TaskActivities via a strongly typed interface.
         /// </summary>
